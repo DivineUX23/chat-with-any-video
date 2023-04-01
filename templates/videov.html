@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Transcription App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+
+      <!-- Do this to change the layout for differnt p;ateffoms, Create two differnt files for them. -->
+  {% if request.user_agent.platform == 'android' or request.user_agent.platform == 'iphone' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='mobile.css') }}">
+  {% else %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='desktop.css') }}">
+  {% endif %}
+
+
+    <style>
+    </style>
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="col-md-6">
+        <div class = "centered">
+
+        {% if video_url %}
+          <div class="video-container">
+            <h2>Watch, Ask</h2>
+            <video src="{{ url_for('play', video_url=video_url) }}" controls></video>
+          </div>
+
+      {% endif %}
+  </div>
+</div>
+
+
+  <div class = "col-md-7">
+    <div class = "centered">
+
+      <div class="mt-3">
+        <form id = "chat-form">
+          <div class="form-group">
+            <label for="user_input">Ask a question:</label>
+            <input type="text" class="form-control" id="user_input" name="user_input">
+          </div>
+          <button type="submit" class="btn btn-primary">Ask</button>
+        </div>
+        </form>
+
+  <h4 class="convo-heading">Conversation:</h4>
+    <div class="conversation">
+      <div id="conversation-history">
+          <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="../static/video.js"></script>
+
+  </body>
+</html>
