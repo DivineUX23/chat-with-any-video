@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Transcription App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+      .word{
+        text-decoration: line-through}
+     </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Get smarter, 13.9X faster!</h1>
+      <h4>Make learning a breeze with me (your study <div class="word">AI</div> buddy)! 😎</h4>
+      <hr>
+      <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+        <h2>Video file?</h2>
+        <div class="form-group">
+          <input type="file" class="form-control-file" name="file" accept="video/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <hr>
+      <form action="{{ url_for('upload') }}" method="POST">
+        <h2>YouTube video?</h2>
+        <div class="form-group">
+          <label for="youtube_link">Enter the URL of a YouTube video:</label>
+          <input type="text" class="form-control" id="youtube_link" name="youtube_link" placeholder="https://www.youtube.com/watch?v=...">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <hr>
+
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-danger mt-2">{{ message }}</div>
+{% endfor %}
+    </body>
+ </html>
